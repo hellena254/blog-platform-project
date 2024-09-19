@@ -1,12 +1,12 @@
 import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../config/database'; // Adjust the import based on your setup
+import { sequelize } from '../config/db';
 
 class User extends Model {
   public id!: number;
   public username!: string;
   public email!: string;
   public password!: string;
-  public role!: string; // 'admin' or 'regular'
+  public role!: 'admin' | 'user';
 }
 
 User.init({
@@ -29,8 +29,8 @@ User.init({
     allowNull: false,
   },
   role: {
-    type: DataTypes.ENUM('admin', 'regular'),
-    defaultValue: 'regular',
+    type: DataTypes.ENUM('admin', 'user'),
+    defaultValue: 'user',
   },
 }, {
   sequelize,
